@@ -1,55 +1,146 @@
-<img src="public/preview.png" />
 
-# Blog
+# Vibecode Community Hub
 
-Blog is a neobrutalism-styled astro tailwind template for blogs.
+A comprehensive platform for the emerging practice of Vibe Coding, leveraging AI-assisted programming tools to empower developers, enthusiasts, startups, and creators.
 
-## Get started
+## 🚀 Mission
 
-[Create a new repo](https://github.com/neobrutalism-templates/blog/generate) from this template.
+Empower users to use AI-assisted programming efficiently and creatively through curated resources, dynamic community interactions, and up-to-date industry news.
+
+## ✨ Features
+
+- **📰 News Feed** - Stay updated on AI development tools, industry news, and influencer insights
+- **🛠️ Tools Directory** - Discover and compare AI coding tools with community reviews
+- **📚 Knowledge Hub** - Access guides and tutorials for all skill levels
+- **🌟 Projects Showcase** - Browse community creations and share your own work
+- **💬 Community Forum** - Discuss techniques, share prompts, and get help
+- **🎙️ Events & Webinars** - Participate in workshops, hackathons, and live sessions
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+This project uses `pnpm` as the package manager. Make sure you have it installed:
+
+```bash
+npm install -g pnpm
+```
 
 ### Installation
 
-This template uses `pnpm` package manager so make sure you have it installed.
-
-To install all dependencies run:
+Clone the repository and install dependencies:
 
 ```bash
-pnpm i
+git clone https://github.com/yourusername/vibecode-community.git
+cd vibecode-community
+pnpm install
 ```
 
-To run the app locally:
+### Development
+
+Run the development server:
 
 ```bash
 pnpm run dev
 ```
 
-### Config
+### Build
 
-- Go to `astro.config.mjs` and change site
-- Go to `src/config.ts` and configure data for meta tags
-- You can customize code blocks config by changing `expressiveCode` object in astro config. Visit [expressive-code docs](https://expressive-code.com/reference/configuration) for more info.
-- To change code blocks theme, you'll have to update themes both in `themes` array and in `config.ts`
+Build for production:
 
-### How to add new post
-
-Create a new md/mdx file inside src/content/posts, and make sure it's in this format:
-
-```
----
-title: 'First post'
-description: 'Lorem ipsum dolor sit amet'
-pubDate: 'Dec 22 2023'
-tags: ['astro', 'blogging', 'learning']
----
-
-Your post
+```bash
+pnpm run build
 ```
 
-### Styling
+## 📝 Content Management
 
-To change the styling visit [styling docs](https://neobrutalism-components.vercel.app/docs/styling), and copy the desired styling to tailwind config like it's shown in the styling docs.
+### Adding News Articles
 
-Make sure to not delete `fontFamily`, `screens`, and `typography` from tailwind config.
+Create a new `.md` or `.mdx` file in `src/content/news` with the following structure:
 
-After you change the font weight you'll have to update font imports inside `src/layouts/Base.astro`.
+```md
+---
+title: 'Article Title'
+description: 'Brief description'
+pubDate: 'Mar 15 2025'
+category: 'Product Updates'
+featured: true
+imageUrl: '/images/article-image.png'
+tags: ['ai', 'tools', 'updates']
+---
+
+Your article content here...
+```
+
+### Adding Tools
+
+Create a new `.md` or `.mdx` file in `src/content/tools` with:
+
+```md
+---
+name: 'Tool Name'
+description: 'Tool description'
+category: 'IDE Integration'
+rating: 4.8
+featured: true
+imageUrl: '/images/tool-logo.png'
+pricing: 'Free / $10/month'
+website: 'https://tool-website.com'
+pros: ['Easy to use', 'Great for beginners']
+cons: ['Limited free tier']
+tags: ['code-generation', 'ide']
+---
+
+Detailed tool information...
+```
+
+### Adding Learning Resources
+
+Create a new `.md` or `.mdx` file in `src/content/learn` with:
+
+```md
+---
+title: 'Tutorial Title'
+description: 'Brief description'
+pubDate: 2025-03-15
+category: 'beginner'
+duration: '15 min'
+featured: false
+level: 'beginner'
+imageUrl: '/images/tutorial-image.png'
+tags: ['getting-started', 'prompts']
+---
+
+Your tutorial content here...
+```
+
+## ⚙️ Configuration
+
+- Update `src/config.ts` to modify site metadata and code highlighting options
+- Customize styling in `tailwind.config.mjs`
+- Add custom components in `src/components/`
+
+## 🖌️ Styling
+
+This project uses a neobrutalism design style with Tailwind CSS, inspired by [neobrutalism.dev](https://neobrutalism.dev/) components. To modify the styling:
+
+1. Update color schemes in `tailwind.config.mjs`
+2. Modify component styles in their respective files
+3. Update global styles in `src/layouts/Base.astro`
+4. Check out [neobrutalism.dev](https://neobrutalism.dev/) for more styling guidance and components
+
+## 🔗 Technologies
+
+- [Astro](https://astro.build/) - Web framework
+- [React](https://reactjs.org/) - UI components
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [Radix UI](https://www.radix-ui.com/) - Accessible components
+- [MDX](https://mdxjs.com/) - Enhanced Markdown
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
