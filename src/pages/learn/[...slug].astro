@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content'
+import Layout from '@/layouts/BlogPost.astro'
+
+export async function getStaticPaths() {
+  const learnEntries = await getCollection('learn')
+
+  return learnEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry }
+  }))
+}
+
+const { entry } = Astro.props
+const { Content } = await entry.render()
+
+// Adapt learn data to match what BlogPost expects
+const adaptedFrontmatter = {
+  title: entry.data.title,
+  description: entry.data.description,
+  pubDate: entry.data.pubDate,
+  updatedDate: entry.data.pubDate,
+  heroImage: entry.data.imageUrl,
+  category: entry.data.category,
+  tags: [entry.data.level, entry.data.category], // Convert to tags array
+  // Add any other fields that PostInfo.astro might be expecting
+}
+---
+
+<Layout frontmatter={adaptedFrontmatter}>
+  <Content />
+</Layout> 

@@ -5,13 +5,12 @@ import expressiveCode from 'astro-expressive-code'
 
 import mdx from '@astrojs/mdx'
 
-// https://astro.build/config
 export default defineConfig({
   integrations: [
     tailwind(),
     react(),
     expressiveCode({
-      themes: ['github-dark', 'github-light'],
+      themes: ['dracula', 'github-light'],
       styleOverrides: {
         frames: {
           editorActiveTabIndicatorTopColor: 'transparent',
@@ -22,8 +21,13 @@ export default defineConfig({
         uiFontFamily: 'inherit',
         borderColor: '#80808080',
       },
+      themeCssSelector: (theme) => 
+        theme === 'github-light' ? 'html:not(.dark)' : 'html.dark',
+      useThemedShiki: true,
+      defaultProps: {
+        wrap: true
+      },
     }),
     mdx(),
   ],
-  site: 'https://neobrutalism-blog.netlify.app/',
 })

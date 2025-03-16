@@ -4,15 +4,21 @@ import ThemeSwitcher from '@/components/ThemeSwitcher'
 
 <nav class="fixed left-0 top-0 z-50 w-full px-5">
   <div
-    class="z-50 mx-auto mt-5 flex h-[70px] w-full max-w-[860px] items-center justify-between rounded-base border-2 border-border bg-white px-5 text-text dark:border-darkBorder dark:bg-secondaryBlack dark:text-darkText w400:h-[unset] w400:flex-col w400:gap-3 w400:py-3"
+    class="z-50 mx-auto mt-5 flex h-[70px] w-full max-w-[1200px] items-center justify-between rounded-lg border-2 border-black bg-white px-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:bg-secondaryBlack dark:text-darkText w400:h-[unset] w400:flex-col w400:gap-3 w400:py-3"
   >
-    <a href="/">
-      <h2 class="text-3xl font-heading w500:text-2xl w400:text-xl">Blog</h2>
+    <a href="/" class="flex items-center gap-2">
+      <div class="bg-purple-600 text-white p-2 rounded-md border-2 border-black">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 17 2 2 8-10"/><path d="M8.5 10.5 11 13l1.5-1.5"/><rect width="20" height="14" x="2" y="6" rx="2"/><path d="M10 6V2"/><path d="M14 6V2"/></svg>
+      </div>
+      <h2 class="text-2xl font-bold">Vibecoders</h2>
     </a>
 
     <div class="flex items-center text-lg w500:text-base w400:text-sm">
-      <a class="mr-10 w400:mr-7" href="/tags">Tags</a>
-      <a class="mr-10 w400:mr-7" href="/about">About</a>
+      <a class="mr-6 hover:text-purple-600 font-medium" href="/tools">Tools</a>
+      <a class="mr-6 hover:text-purple-600 font-medium" href="/news">News</a>
+      <a class="mr-6 hover:text-purple-600 font-medium" href="/learn">Learn</a>
+      <a class="mr-6 hover:text-purple-600 font-medium" href="/forum">Forum</a>
+      <a class="mr-6 hover:text-purple-600 font-medium" href="/about">About</a>
 
       <ThemeSwitcher client:load />
     </div>

@@ -1,6 +1,7 @@
 import defaultTheme from 'tailwindcss/defaultTheme'
 import typography from '@tailwindcss/typography'
 import tailwindScrollbar from 'tailwind-scrollbar'
+import dracula from 'tailwind-dracula'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -11,12 +12,13 @@ export default {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        main: '#FFDC58',
+        main: 'var(--main)',
         mainAccent: '#ffc800', // not needed for shadcn components
         overlay: 'rgba(0,0,0,0.8)', // background color overlay for alert dialogs, modals, etc.
 
         // light mode
-        bg: '#FEF2E8',
+        bg: 'var(--bg)',
+        bg2: 'var(--bg2)',
         text: '#000',
         border: '#000',
 

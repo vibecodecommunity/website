@@ -2,6 +2,9 @@
 title: "Third post"
 description: "Lorem ipsum dolor sit amet"
 pubDate: "Jan 04 2024"
+category: "Breaking News"
+imageUrl: "/placeholder.svg"
+featured: true
 tags: ["astro", "blogging", "learning"]
 ---
 

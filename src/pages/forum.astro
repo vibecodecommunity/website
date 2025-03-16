@@ -1,0 +1,267 @@
+---
+import config from '@/config'
+import Base from '@/layouts/Base.astro'
+---
+
+<Base meta={{ title: 'Community Forum | ' + config.title }}>
+  <section class="w-full py-12 md:py-24">
+    <div class="container px-4 md:px-6">
+      <div class="flex flex-col items-center justify-center space-y-4 text-center mb-8">
+        <div class="space-y-2">
+          <h1 class="text-3xl font-bold tracking-tighter sm:text-5xl text-text">Community Forum</h1>
+          <p class="max-w-[700px] text-text md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+            Connect with fellow developers, share prompts, and get help with AI-assisted coding
+          </p>
+        </div>
+      </div>
+      
+      <!-- Search and Create Post -->
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
+        <div class="w-full md:w-2/3">
+          <div class="relative">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+            </svg>
+            <input 
+              type="text" 
+              placeholder="Search discussions..." 
+              class="w-full pl-10 pr-4 py-2 rounded-md border-2 border-black focus:outline-none focus:ring-2 focus:ring-purple-600"
+            />
+          </div>
+        </div>
+        <a href="/forum/create" class="w-full md:w-auto bg-purple-600 text-white px-6 py-2 rounded-md font-bold border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform">
+          Create New Post
+        </a>
+      </div>
+      
+      <!-- Topics and Categories -->
+      <div class="flex flex-col md:flex-row gap-8 mb-12">
+        <!-- Categories Sidebar -->
+        <div class="w-full md:w-1/4">
+          <div class="bg-white rounded-lg border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-4">
+            <h2 class="text-xl font-bold mb-4">Categories</h2>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="flex items-center justify-between py-2 px-3 hover:bg-purple-100 rounded-md">
+                  <span>General Discussion</span>
+                  <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-xs">125</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center justify-between py-2 px-3 bg-purple-100 rounded-md">
+                  <span class="font-medium">Prompt Engineering</span>
+                  <span class="bg-purple-600 text-white px-2 py-1 rounded-full text-xs">84</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center justify-between py-2 px-3 hover:bg-purple-100 rounded-md">
+                  <span>Tool Recommendations</span>
+                  <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-xs">56</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center justify-between py-2 px-3 hover:bg-purple-100 rounded-md">
+                  <span>Troubleshooting</span>
+                  <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-xs">32</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center justify-between py-2 px-3 hover:bg-purple-100 rounded-md">
+                  <span>Showcase</span>
+                  <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-xs">45</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center justify-between py-2 px-3 hover:bg-purple-100 rounded-md">
+                  <span>Job Opportunities</span>
+                  <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-xs">18</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Discussion Threads -->
+        <div class="w-full md:w-3/4">
+          <div class="mb-6 flex items-center justify-between">
+            <h2 class="text-2xl font-bold">Recent Discussions</h2>
+            <div class="flex items-center gap-2">
+              <span class="text-sm text-gray-500">Sort by:</span>
+              <select class="px-2 py-1 border-2 border-black rounded-md focus:outline-none">
+                <option>Recent</option>
+                <option>Popular</option>
+                <option>Most Commented</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- Thread List -->
+          <div class="space-y-4">
+            <!-- Thread item -->
+            <div class="bg-white rounded-lg border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-4">
+              <div class="flex flex-col md:flex-row gap-4 md:items-center">
+                <div class="md:w-10/12">
+                  <div class="flex items-center mb-2 text-sm text-gray-500">
+                    <span class="bg-purple-100 text-purple-600 rounded-full px-3 py-1">Prompt Engineering</span>
+                    <span class="mx-2">•</span>
+                    <span>Posted by @promptmaster</span>
+                    <span class="mx-2">•</span>
+                    <span>2 hours ago</span>
+                  </div>
+                  <h3 class="text-xl font-bold mb-2">
+                    <a href="/forum/post/1" class="hover:text-purple-600">
+                      Best practices for crafting prompts for code generation?
+                    </a>
+                  </h3>
+                  <p class="text-gray-600 mb-3 line-clamp-2">
+                    I've been experimenting with different prompt styles and noticed that the quality of code generated varies significantly based on how I structure my prompt. What formatting, context, and specific instructions do you include that yield the best results?
+                  </p>
+                  <div class="flex items-center gap-4 text-sm">
+                    <span class="flex items-center gap-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1 0 4H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8Z"/>
+                      </svg>
+                      24 comments
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 10v12"/>
+                        <path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"/>
+                      </svg>
+                      45 likes
+                    </span>
+                    <span class="text-purple-600">Hot Topic</span>
+                  </div>
+                </div>
+                <div class="md:w-2/12 flex md:justify-end">
+                  <div class="flex flex-col items-center">
+                    <img 
+                      src="/placeholder.svg" 
+                      alt="User avatar" 
+                      class="w-12 h-12 rounded-full border-2 border-black"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Thread item -->
+            <div class="bg-white rounded-lg border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-4">
+              <div class="flex flex-col md:flex-row gap-4 md:items-center">
+                <div class="md:w-10/12">
+                  <div class="flex items-center mb-2 text-sm text-gray-500">
+                    <span class="bg-purple-100 text-purple-600 rounded-full px-3 py-1">Tool Recommendations</span>
+                    <span class="mx-2">•</span>
+                    <span>Posted by @devtools</span>
+                    <span class="mx-2">•</span>
+                    <span>5 hours ago</span>
+                  </div>
+                  <h3 class="text-xl font-bold mb-2">
+                    <a href="/forum/post/2" class="hover:text-purple-600">
+                      Comparing Cursor vs Visual Studio Code with GitHub Copilot
+                    </a>
+                  </h3>
+                  <p class="text-gray-600 mb-3 line-clamp-2">
+                    I've been using VS Code with GitHub Copilot for a while but recently started experimenting with Cursor. Has anyone done a thorough comparison between the two setups? I'm particularly interested in differences in code completion quality, IDE features, and workflow improvements.
+                  </p>
+                  <div class="flex items-center gap-4 text-sm">
+                    <span class="flex items-center gap-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1 0 4H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8Z"/>
+                      </svg>
+                      18 comments
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 10v12"/>
+                        <path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"/>
+                      </svg>
+                      32 likes
+                    </span>
+                  </div>
+                </div>
+                <div class="md:w-2/12 flex md:justify-end">
+                  <div class="flex flex-col items-center">
+                    <img 
+                      src="/placeholder.svg" 
+                      alt="User avatar" 
+                      class="w-12 h-12 rounded-full border-2 border-black"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Thread item -->
+            <div class="bg-white rounded-lg border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-4">
+              <div class="flex flex-col md:flex-row gap-4 md:items-center">
+                <div class="md:w-10/12">
+                  <div class="flex items-center mb-2 text-sm text-gray-500">
+                    <span class="bg-purple-100 text-purple-600 rounded-full px-3 py-1">General Discussion</span>
+                    <span class="mx-2">•</span>
+                    <span>Posted by @aiethics</span>
+                    <span class="mx-2">•</span>
+                    <span>1 day ago</span>
+                  </div>
+                  <h3 class="text-xl font-bold mb-2">
+                    <a href="/forum/post/3" class="hover:text-purple-600">
+                      How are you handling attribution for AI-generated code?
+                    </a>
+                  </h3>
+                  <p class="text-gray-600 mb-3 line-clamp-2">
+                    As AI-generated code becomes more common in production environments, I'm curious how people are handling attribution and documentation. Do you note which parts were AI-assisted? How do you approach code reviews for AI-generated code?
+                  </p>
+                  <div class="flex items-center gap-4 text-sm">
+                    <span class="flex items-center gap-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1 0 4H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8Z"/>
+                      </svg>
+                      36 comments
+                    </span>
+                    <span class="flex items-center gap-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 10v12"/>
+                        <path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"/>
+                      </svg>
+                      28 likes
+                    </span>
+                  </div>
+                </div>
+                <div class="md:w-2/12 flex md:justify-end">
+                  <div class="flex flex-col items-center">
+                    <img 
+                      src="/placeholder.svg" 
+                      alt="User avatar" 
+                      class="w-12 h-12 rounded-full border-2 border-black"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Pagination -->
+          <div class="flex justify-center mt-8">
+            <nav class="flex items-center gap-1">
+              <a href="#" class="px-3 py-1 rounded-md border-2 border-black hover:bg-gray-100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m15 18-6-6 6-6"/>
+                </svg>
+              </a>
+              <a href="#" class="px-3 py-1 rounded-md border-2 border-black bg-purple-600 text-white">1</a>
+              <a href="#" class="px-3 py-1 rounded-md border-2 border-black hover:bg-gray-100">2</a>
+              <a href="#" class="px-3 py-1 rounded-md border-2 border-black hover:bg-gray-100">3</a>
+              <span class="px-3 py-1">...</span>
+              <a href="#" class="px-3 py-1 rounded-md border-2 border-black hover:bg-gray-100">12</a>
+              <a href="#" class="px-3 py-1 rounded-md border-2 border-black hover:bg-gray-100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m9 18 6-6-6-6"/>
+                </svg>
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base> 

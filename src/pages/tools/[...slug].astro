@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content'
+import Layout from '@/layouts/BlogPost.astro'
+
+export async function getStaticPaths() {
+  const toolEntries = await getCollection('tools')
+
+  return toolEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry }
+  }))
+}
+
+const { entry } = Astro.props
+const { Content } = await entry.render()
+
+// Adapt tool data to match what BlogPost expects
+const adaptedFrontmatter = {
+  title: entry.data.name,
+  description: entry.data.description,
+  pubDate: new Date(), // Default date if not available
+  updatedDate: new Date(),
+  heroImage: entry.data.imageUrl,
+  category: entry.data.category,
+  tags: [entry.data.category], // Convert category to tags array
+  // Add any other fields that PostInfo.astro might be expecting
+}
+---
+
+<Layout frontmatter={adaptedFrontmatter}>
+  <Content />
+</Layout>

@@ -2,6 +2,8 @@
 title: 'Markdown Style Guide'
 description: 'Here is a sample of some basic Markdown syntax.'
 pubDate: 'Jan 07 2024'
+category: "Breaking News"
+imageUrl: "/placeholder.svg"
 tags: ['guide', 'style', 'markdown']
 ---
 

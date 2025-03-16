@@ -9,6 +9,10 @@ type Config = {
     dark: ThemeObjectOrShikiThemeName
     light: ThemeObjectOrShikiThemeName
   }
+  codeOptions: {
+    wrap: boolean
+    lineNumbers: boolean
+  }
 }
 
 export default {
@@ -17,7 +21,14 @@ export default {
   description: 'Lorem ipsum dolor sit amet',
   lang: 'en',
   themes: {
-    dark: 'github-dark',
+    dark: 'dracula',
     light: 'github-light',
   },
+  codeOptions: {
+    wrap: true,
+    lineNumbers: true,
+  }
 } satisfies Config
+
+
+

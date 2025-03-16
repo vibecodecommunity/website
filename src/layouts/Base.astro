@@ -8,6 +8,7 @@ import Footer from '@/components/Footer.astro'
 
 import '@fontsource/inter/600.css'
 import '@fontsource/inter/400.css'
+import '@/global.css'
 
 const {
   meta: { title, description = config.description },
@@ -20,11 +21,11 @@ const {
     <ViewTransitions />
   </head>
   <body
-    class="mx-auto max-w-[900px] bg-bg px-5 font-base text-text scrollbar scrollbar-thumb-black dark:bg-darkBg dark:text-darkText dark:scrollbar-thumb-white"
+    class=" bg-bg font-base text-text scrollbar scrollbar-thumb-black  dark:text-darkText dark:scrollbar-thumb-white"
   >
     <Nav />
     <main
-      class="min-h-[calc(100dvh-70px)] py-10 pt-[120px] w500:min-h-[calc(100dvh-70px)] w400:pt-[140px]"
+      class="mx-auto max-w-[1200px] min-h-[calc(100dvh-70px)] py-10 pt-[120px] w500:min-h-[calc(100dvh-70px)] w400:pt-[140px]"
     >
       <slot />
     </main>

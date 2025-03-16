@@ -4,26 +4,157 @@ import { getCollection } from 'astro:content'
 
 import Base from '@/layouts/Base.astro'
 import PostPreview from '@/components/PostPreview.astro'
+import NewsCard from '@/components/NewsCard.astro'
+import ToolCard from '@/components/ToolCard.astro'
+import ProjectCard from '@/components/ProjectCard.astro'
+import { Button } from '@/components/ui/button'
 
-const allPosts = await getCollection('posts')
-const sortedPosts = allPosts.sort(
-  (a, b) =>
-    // eslint-disable-next-line prettier/prettier
-    new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
-)
+// Remove this collection call since we're removing the blog section
+// const allPosts = await getCollection('posts')
+// const sortedPosts = allPosts.sort(
+//   (a, b) =>
+//     new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+// )
 ---
 
 <Base meta={{ title: config.title }}>
-  <div class="w700:grid-cols-1 grid grid-cols-2 gap-5">
-    {
-      sortedPosts.map((post) => (
-        <PostPreview
-          url={post.slug}
-          title={post.data.title}
-          description={post.data.description}
-          pubDate={post.data.pubDate}
-        />
-      ))
-    }
-  </div>
+  <!-- Hero Section -->
+  <section class="w-full py-12 md:py-24 lg:py-32 mb-12 
+    bg-gradient-to-b from-[var(--hero-background-color-01)] to-[var(--hero-background-color-02)]">
+    <div class="container px-4 md:px-6">
+      <div class="flex flex-col items-center space-y-4 text-center">
+        <div class="space-y-2">
+          <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
+            Vibecoders Community Hub
+          </h1>
+          <p class="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
+            Empowering developers to create with AI-assisted programming tools
+          </p>
+        </div>
+        <div class="space-x-4">
+          <a href="/tools" class="bg-bg2 text-foreground hover:bg-muted px-4 py-2 font-bold">
+            Explore Tools <span class="ml-2">→</span>
+          </a>
+          <a href="/join" class="border-background text-background hover:bg-bg2/10 border px-4 py-2 font-bold">
+            Join Community
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="w-full py-12 md:py-24 lg:py-32 bg-muted">
+    <div class="container px-4 md:px-6">
+      <div class="flex flex-col items-center justify-center space-y-4 text-center">
+        <div class="space-y-2">
+          <h2 class="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground">Everything You Need for Vibe Coding</h2>
+          <p class="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+            Our platform brings together news, tools, knowledge, and community to help you master AI-assisted development
+          </p>
+        </div>
+      </div>
+      <div class="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 mt-8">
+        <!-- Feature Cards -->
+        <div class="bg-bg2 p-6 border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <div class="flex flex-row items-center gap-4 mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-primary"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/></svg>
+            <div>
+              <h3 class="text-xl font-bold">News Feed</h3>
+              <p class="text-muted-foreground">Stay updated on AI development tools</p>
+            </div>
+          </div>
+          <p class="text-foreground">Get the latest updates on AI tools, industry news, and influencer insights.</p>
+          <div class="mt-4">
+            <a href="/news" class="inline-flex items-center text-primary font-bold">
+              Browse News <span class="ml-2">→</span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="bg-bg2 p-6 border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <div class="flex flex-row items-center gap-4 mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-primary"><path d="m5.5 8.5 4 4-4 4"/><path d="m13.5 8.5 4 4-4 4"/></svg>
+            <div>
+              <h3 class="text-xl font-bold">Tools Directory</h3>
+              <p class="text-muted-foreground">Discover and compare AI coding tools</p>
+            </div>
+          </div>
+          <p class="text-foreground">Explore categorized listings, community reviews, and detailed comparisons.</p>
+          <div class="mt-4">
+            <a href="/tools" class="inline-flex items-center text-primary font-bold">
+              Explore Tools <span class="ml-2">→</span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="bg-bg2 p-6 border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <div class="flex flex-row items-center gap-4 mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-primary"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            <div>
+              <h3 class="text-xl font-bold">Knowledge Hub</h3>
+              <p class="text-muted-foreground">Learn AI-assisted development</p>
+            </div>
+          </div>
+          <p class="text-foreground">Access guides, tutorials, and resources for all skill levels.</p>
+          <div class="mt-4">
+            <a href="/learn" class="inline-flex items-center text-primary font-bold">
+              Start Learning <span class="ml-2">→</span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="bg-bg2 p-6 border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <div class="flex flex-row items-center gap-4 mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-primary"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+            <div>
+              <h3 class="text-xl font-bold">Projects Showcase</h3>
+              <p class="text-muted-foreground">Discover community creations</p>
+            </div>
+          </div>
+          <p class="text-foreground">Browse projects built with AI assistance and share your own work.</p>
+          <div class="mt-4">
+            <a href="/projects" class="inline-flex items-center text-primary font-bold">
+              View Projects <span class="ml-2">→</span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="bg-bg2 p-6 border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <div class="flex flex-row items-center gap-4 mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-primary"><path d="M21 15a2 2 0 0 1 0 4H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8Z"/></svg>
+            <div>
+              <h3 class="text-xl font-bold">Community Forum</h3>
+              <p class="text-muted-foreground">Connect with fellow vibecoders</p>
+            </div>
+          </div>
+          <p class="text-foreground">Discuss techniques, share prompts, and get help from the community.</p>
+          <div class="mt-4">
+            <a href="/forum" class="inline-flex items-center text-primary font-bold">
+              Join Discussion <span class="ml-2">→</span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="bg-bg2 p-6 border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <div class="flex flex-row items-center gap-4 mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-primary"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+            <div>
+              <h3 class="text-xl font-bold">Events & Webinars</h3>
+              <p class="text-muted-foreground">Learn through live sessions</p>
+            </div>
+          </div>
+          <p class="text-foreground">Participate in workshops, hackathons, and live coding sessions.</p>
+          <div class="mt-4">
+            <a href="/events" class="inline-flex items-center text-primary font-bold">
+              View Calendar <span class="ml-2">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Removing the Blog Posts Section -->
+  <!-- The blog posts section used to be here -->
 </Base>

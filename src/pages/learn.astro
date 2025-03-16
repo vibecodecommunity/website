@@ -1,0 +1,225 @@
+---
+import config from '@/config'
+import Base from '@/layouts/Base.astro'
+import { getCollection } from 'astro:content';
+
+// Fetch learn content
+const allLearnPosts = await getCollection('learn');
+
+// Group posts by category and level
+const beginnerPosts = allLearnPosts.filter(post => post.data.level === 'beginner');
+const intermediatePosts = allLearnPosts.filter(post => post.data.level === 'intermediate');
+const advancedPosts = allLearnPosts.filter(post => post.data.level === 'advanced');
+const promptPosts = allLearnPosts.filter(post => post.data.category === 'prompts');
+
+// Featured tutorials (get latest 3)
+const featuredTutorials = allLearnPosts
+  .filter(post => post.data.featured)
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+  .slice(0, 3);
+---
+
+<Base meta={{ title: 'Learning Resources | ' + config.title }}>
+  <section class="w-full py-12 md:py-24 ">
+    <div class="container px-4 md:px-6">
+      <div class="flex flex-col items-center justify-center space-y-4 text-center mb-8">
+        <div class="space-y-2">
+          <h1 class="text-3xl font-bold tracking-tighter sm:text-5xl text-text">Learning Resources</h1>
+          <p class="max-w-[700px] text-text md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+            Master AI-assisted development with tutorials, guides, and best practices
+          </p>
+        </div>
+      </div>
+      
+      <!-- Learning Path Categories -->
+      <div class="flex flex-wrap gap-2 justify-center mb-8">
+        <a href="#all" class="bg-mainAccent text-text px-4 py-2 rounded-base font-bold border-2 border-border shadow-light hover:-translate-y-boxShadowY transition-transform">
+          All Resources
+        </a>
+        <a href="#beginner" class="bg-bg text-text px-4 py-2 rounded-base font-bold border-2 border-border shadow-light hover:-translate-y-boxShadowY transition-transform">
+          Beginner
+        </a>
+        <a href="#intermediate" class="bg-bg text-text px-4 py-2 rounded-base font-bold border-2 border-border shadow-light hover:-translate-y-boxShadowY transition-transform">
+          Intermediate
+        </a>
+        <a href="#advanced" class="bg-bg text-text px-4 py-2 rounded-base font-bold border-2 border-border shadow-light hover:-translate-y-boxShadowY transition-transform">
+          Advanced
+        </a>
+        <a href="#prompts" class="bg-bg text-text px-4 py-2 rounded-base font-bold border-2 border-border shadow-light hover:-translate-y-boxShadowY transition-transform">
+          Prompt Engineering
+        </a>
+      </div>
+      
+      <!-- Getting Started Section -->
+      <div class="mb-12 bg-bg p-8 rounded-base border-2 border-border shadow-light">
+        <h2 class="text-2xl font-bold mb-6">Getting Started with AI-Assisted Development</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <p class="text-text mb-4">
+              AI-assisted development is revolutionizing how programmers work. This guide will help you understand the fundamentals and get started with using AI tools effectively in your workflow.
+            </p>
+            
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 mr-2 text-mainAccent"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                <span>Understanding AI capabilities and limitations</span>
+              </li>
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 mr-2 text-mainAccent"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                <span>Setting up your first AI coding assistant</span>
+              </li>
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 mr-2 text-mainAccent"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                <span>Basic techniques for effective prompting</span>
+              </li>
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 mr-2 text-mainAccent"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                <span>Integrating AI tools into your development workflow</span>
+              </li>
+            </ul>
+            
+            <a href="/learn/getting-started" class="inline-flex items-center justify-center px-6 py-3 border-2 border-border bg-mainAccent text-text font-bold rounded-base shadow-light hover:-translate-y-boxShadowY transition-transform">
+              Start Learning
+            </a>
+          </div>
+          
+          <div class="aspect-video border-2 border-border rounded-base overflow-hidden">
+            <img 
+              src="/placeholder.svg" 
+              alt="Getting Started with AI-Assisted Development"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+      
+      <!-- Featured Tutorials -->
+      <div id="tutorials" class="mb-12 bg-bg p-8 rounded-base border-2 border-border shadow-light">
+        <h2 class="text-2xl font-bold mb-6">Featured Tutorials</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {featuredTutorials.map((tutorial) => (
+            <div class="border-2 border-border rounded-base shadow-light overflow-hidden transition-all hover:-translate-y-boxShadowY hover:shadow-none">
+              <div class="aspect-video bg-bg2">
+                <img 
+                  src={tutorial.data.imageUrl || "/placeholder.svg"} 
+                  alt={tutorial.data.title}
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-4">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-sm font-medium bg-bg2 px-2 py-1 rounded-base">{tutorial.data.category}</span>
+                  <span class="text-sm text-text opacity-70">{tutorial.data.duration || "15 min"}</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">{tutorial.data.title}</h3>
+                <p class="text-text opacity-80 mb-4">{tutorial.data.description}</p>
+                <a href={`/learn/${tutorial.slug}`} class="inline-flex items-center text-text font-bold">
+                  View Tutorial <span class="ml-2">→</span>
+                </a>
+              </div>
+            </div>
+          ))}
+          
+          {featuredTutorials.length === 0 && (
+            <div class="col-span-3 text-center py-8">
+              <p>No tutorials found. Check back soon for new content!</p>
+            </div>
+          )}
+        </div>
+        
+        <div class="mt-8 text-center">
+          <a href="/learn/tutorials" class="inline-flex items-center justify-center px-6 py-3 border-2 border-border bg-bg2 text-text font-bold rounded-base shadow-light hover:-translate-y-boxShadowY transition-transform">
+            View All Tutorials
+          </a>
+        </div>
+      </div>
+      
+      <!-- Interactive Learning -->
+      <div class="mb-12 bg-bg p-8 rounded-base border-2 border-border shadow-light">
+        <h2 class="text-2xl font-bold mb-6">Interactive Learning Paths</h2>
+        
+        <div class="space-y-6">
+          <!-- Learning Path -->
+          <div class="border-2 border-border rounded-base p-4 bg-bg2">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+              <div>
+                <h3 class="text-xl font-bold">Beginner Path: AI Coding Fundamentals</h3>
+                <p class="text-text opacity-80">Master the basics of AI-assisted development with hands-on exercises.</p>
+                <div class="flex items-center mt-2">
+                  <div class="bg-bg h-2 w-full max-w-[200px] rounded-full overflow-hidden">
+                    <div class="bg-mainAccent h-full w-[70%]"></div>
+                  </div>
+                  <span class="ml-2 text-sm text-text opacity-70">4/6 modules</span>
+                </div>
+              </div>
+              <a href="/learn/paths/beginner" class="inline-flex items-center justify-center px-4 py-2 border-2 border-border bg-mainAccent text-text font-bold rounded-base shadow-light hover:-translate-y-boxShadowY transition-transform">
+                Continue Learning
+              </a>
+            </div>
+          </div>
+          
+          <!-- Learning Path -->
+          <div class="border-2 border-border rounded-base p-4 bg-bg2">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+              <div>
+                <h3 class="text-xl font-bold">Intermediate Path: Advanced Prompt Techniques</h3>
+                <p class="text-text opacity-80">Develop expertise in crafting effective prompts for complex programming tasks.</p>
+                <div class="flex items-center mt-2">
+                  <div class="bg-bg h-2 w-full max-w-[200px] rounded-full overflow-hidden">
+                    <div class="bg-mainAccent h-full w-[30%]"></div>
+                  </div>
+                  <span class="ml-2 text-sm text-text opacity-70">2/8 modules</span>
+                </div>
+              </div>
+              <a href="/learn/paths/intermediate" class="inline-flex items-center justify-center px-4 py-2 border-2 border-border bg-mainAccent text-text font-bold rounded-base shadow-light hover:-translate-y-boxShadowY transition-transform">
+                Continue Learning
+              </a>
+            </div>
+          </div>
+          
+          <!-- Learning Path -->
+          <div class="border-2 border-border rounded-base p-4 bg-bg2">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+              <div>
+                <h3 class="text-xl font-bold">Advanced Path: Building AI-Enhanced Applications</h3>
+                <p class="text-text opacity-80">Learn to create applications that leverage AI capabilities throughout development.</p>
+                <div class="flex items-center mt-2">
+                  <div class="bg-bg h-2 w-full max-w-[200px] rounded-full overflow-hidden">
+                    <div class="bg-mainAccent h-full w-[10%]"></div>
+                  </div>
+                  <span class="ml-2 text-sm text-text opacity-70">1/10 modules</span>
+                </div>
+              </div>
+              <a href="/learn/paths/advanced" class="inline-flex items-center justify-center px-4 py-2 border-2 border-border bg-mainAccent text-text font-bold rounded-base shadow-light hover:-translate-y-boxShadowY transition-transform">
+                Continue Learning
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Newsletter Signup -->
+      <div class="bg-bg2 rounded-base border-2 border-border shadow-light p-8">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="md:w-2/3">
+            <h3 class="text-2xl font-bold mb-2">Get Weekly Learning Resources</h3>
+            <p class="text-text opacity-80">Subscribe to receive tutorials, guides, and tips on AI-assisted development.</p>
+          </div>
+          <div class="md:w-1/3 w-full">
+            <form class="flex flex-col sm:flex-row gap-2">
+              <input 
+                type="email" 
+                placeholder="Enter your email" 
+                class="px-4 py-2 rounded-base text-text border-2 border-border bg-bg w-full"
+              />
+              <button class="bg-mainAccent text-text px-4 py-2 rounded-base font-bold border-2 border-border shadow-light hover:-translate-y-boxShadowY transition-transform">
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

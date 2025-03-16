@@ -1,0 +1,185 @@
+---
+import config from '@/config'
+import Base from '@/layouts/Base.astro'
+import ToolCard from '@/components/ToolCard.astro'
+---
+
+<Base meta={{ title: 'AI Tools Directory | ' + config.title }}>
+  <section class="w-full py-12 md:py-24">
+    <div class="container px-4 md:px-6">
+      <div class="flex flex-col items-center justify-center space-y-4 text-center mb-8">
+        <div class="space-y-2">
+          <h1 class="text-3xl font-bold tracking-tighter sm:text-5xl text-text dark:text-darkText">AI Coding Tools Directory</h1>
+          <p class="max-w-[700px] text-text dark:text-darkText opacity-80 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+            Discover and compare the best AI-assisted development tools to supercharge your coding workflow
+          </p>
+        </div>
+      </div>
+      
+      <!-- Tools Categories -->
+      <div class="flex flex-wrap gap-2 justify-center mb-8">
+        <a href="#all" class="bg-mainAccent text-text rounded-base px-4 py-2 font-bold border-2 border-border shadow-light hover:-translate-y-boxShadowY transition-transform">
+          All
+        </a>
+        <a href="#ide" class="bg-bg2 dark:bg-secondaryBlack text-text rounded-base dark:text-darkText px-4 py-2 font-bold  shadow-light dark:shadow-dark hover:-translate-y-boxShadowY transition-transform">
+          IDE Integrations
+        </a>
+        <a href="#gen" class="bg-bg2 dark:bg-secondaryBlack text-text rounded-base dark:text-darkText px-4 py-2 font-bold  shadow-light dark:shadow-dark hover:-translate-y-boxShadowY transition-transform">
+          Code Generation
+        </a>
+        <a href="#review" class="bg-bg2 dark:bg-secondaryBlack text-text rounded-base dark:text-darkText px-4 py-2 font-bold  shadow-light dark:shadow-dark hover:-translate-y-boxShadowY transition-transform">
+          Code Review
+        </a>
+        <a href="#prompts" class="bg-bg2 dark:bg-secondaryBlack text-text rounded-base dark:text-darkText px-4 py-2 font-bold  shadow-light dark:shadow-dark hover:-translate-y-boxShadowY transition-transform">
+          Prompt Engineering
+        </a>
+      </div>
+      
+      <!-- Featured Tools Section -->
+      <div class="mb-12 p-8 ">
+        <h2 class="text-2xl font-bold mb-6 text-text dark:text-darkText">Featured Tools</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <ToolCard
+            name="GitHub Copilot"
+            category="IDE Integration"
+            rating={4.8}
+            description="AI pair programmer that helps you write code faster with context-aware suggestions."
+            imageUrl="/placeholder.svg"
+            href="/tools/github-copilot"
+          />
+          <ToolCard
+            name="Cursor"
+            category="AI-Enhanced Editor"
+            rating={4.6}
+            description="Code editor with built-in AI capabilities for code generation and editing."
+            imageUrl="/placeholder.svg"
+            href="/tools/cursor"
+          />
+          <ToolCard
+            name="Replit Ghostwriter"
+            category="Code Generation"
+            rating={4.5}
+            description="AI coding assistant integrated into Replit's online IDE."
+            imageUrl="/placeholder.svg"
+            href="/tools/replit-ghostwriter"
+          />
+        </div>
+      </div>
+      
+      <!-- IDE Integrations -->
+      <div id="ide" class="mb-12 p-8">
+        <h2 class="text-2xl font-bold mb-6 text-text dark:text-darkText">IDE Integrations</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <ToolCard
+            name="GitHub Copilot"
+            category="IDE Integration"
+            rating={4.8}
+            description="AI pair programmer that helps you write code faster with context-aware suggestions."
+            imageUrl="/placeholder.svg"
+            href="/tools/github-copilot"
+          />
+          <ToolCard
+            name="Tabnine"
+            category="IDE Integration"
+            rating={4.3}
+            description="AI code completion tool that integrates with multiple IDEs."
+            imageUrl="/placeholder.svg"
+            href="/tools/tabnine"
+          />
+          <ToolCard
+            name="IntelliCode"
+            category="IDE Integration"
+            rating={4.1}
+            description="Microsoft's AI-assisted coding tool for Visual Studio and VS Code."
+            imageUrl="/placeholder.svg"
+            href="/tools/intellicode"
+          />
+        </div>
+      </div>
+      
+      <!-- Code Generation Tools -->
+      <div id="gen" class="mb-12 p-8">
+        <h2 class="text-2xl font-bold mb-6 text-text dark:text-darkText">Code Generation Tools</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <ToolCard
+            name="ChatGPT"
+            category="Code Generation"
+            rating={4.7}
+            description="OpenAI's general-purpose AI that can generate and explain code."
+            imageUrl="/placeholder.svg"
+            href="/tools/chatgpt"
+          />
+          <ToolCard
+            name="Replit Ghostwriter"
+            category="Code Generation"
+            rating={4.5}
+            description="AI coding assistant integrated into Replit's online IDE."
+            imageUrl="/placeholder.svg"
+            href="/tools/replit-ghostwriter"
+          />
+          <ToolCard
+            name="Amazon CodeWhisperer"
+            category="Code Generation"
+            rating={4.0}
+            description="Amazon's AI code generator with focus on security and best practices."
+            imageUrl="/placeholder.svg"
+            href="/tools/codewhisperer"
+          />
+        </div>
+      </div>
+      
+      <!-- Search and Filter Section -->
+      <div class="mb-12 p-8">
+        <h2 class="text-2xl font-bold mb-6 text-text dark:text-darkText">Find the Perfect Tool</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div class="md:col-span-3">
+            <div class="relative">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-3 top-1/2 -translate-y-1/2 text-text dark:text-darkText opacity-70">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+              </svg>
+              <input 
+                type="text" 
+                placeholder="Search for tools..." 
+                class="w-full pl-10 pr-4 py-3  bg-bg2 dark:bg-darkBg text-text dark:text-darkText focus:outline-none"
+              />
+            </div>
+          </div>
+          
+          <div>
+            <select class="w-full py-3 px-4  bg-bg2 dark:bg-darkBg text-text dark:text-darkText appearance-none">
+              <option value="">All Categories</option>
+              <option value="ide">IDE Integration</option>
+              <option value="generation">Code Generation</option>
+              <option value="review">Code Review</option>
+              <option value="prompts">Prompt Engineering</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="text-sm font-medium text-text dark:text-darkText">Popular Searches:</span>
+          <a href="#" class="text-sm bg-bg2 dark:bg-darkBg px-2 py-1 text-text dark:text-darkText hover:bg-mainAccent dark:hover:bg-mainAccent transition-colors">AI pair programming</a>
+          <a href="#" class="text-sm bg-bg2 dark:bg-darkBg px-2 py-1 text-text dark:text-darkText hover:bg-mainAccent dark:hover:bg-mainAccent transition-colors">Code completion</a>
+          <a href="#" class="text-sm bg-bg2 dark:bg-darkBg px-2 py-1 text-text dark:text-darkText hover:bg-mainAccent dark:hover:bg-mainAccent transition-colors">Refactoring</a>
+          <a href="#" class="text-sm bg-bg2 dark:bg-darkBg px-2 py-1 text-text dark:text-darkText hover:bg-mainAccent dark:hover:bg-mainAccent transition-colors">Security analysis</a>
+        </div>
+      </div>
+      
+      <!-- Compare Tools Section -->
+      <div class="bg-bg2 dark:bg-secondaryBlack  shadow-light dark:shadow-dark p-8">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="md:w-2/3">
+            <h3 class="text-2xl font-bold mb-2 text-text dark:text-darkText">Can't Decide? Compare Tools Side-by-Side</h3>
+            <p class="text-text dark:text-darkText opacity-80">Our comparison tool helps you evaluate features, pricing, and user experiences across multiple AI coding assistants.</p>
+          </div>
+          <div class="md:w-1/3 w-full flex justify-center">
+            <a href="/tools/compare" class="inline-flex items-center justify-center px-6 py-3  bg-mainAccent text-text font-bold shadow-light dark:shadow-dark hover:-translate-y-boxShadowY transition-transform">
+              Compare Tools
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base> 
