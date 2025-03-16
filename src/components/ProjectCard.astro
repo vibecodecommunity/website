@@ -11,8 +11,8 @@ interface Props {
 const { title, author, technologies, description, imageUrl = '/placeholder.svg', href } = Astro.props;
 ---
 
-<a href={href} class="block group">
-  <div class="bg-white rounded-lg border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+<a href={href} class="block group h-full">
+  <div class="bg-bg2 rounded-lg border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] flex flex-col h-full">
     <div class="aspect-video w-full overflow-hidden bg-gray-100">
       <img 
         src={imageUrl} 
@@ -21,17 +21,17 @@ const { title, author, technologies, description, imageUrl = '/placeholder.svg',
       />
     </div>
     
-    <div class="p-4">
-      <h3 class="text-xl font-bold mb-1 group-hover:text-purple-600">{title}</h3>
+    <div class="p-4 flex flex-col flex-grow">
+      <h3 class="text-xl font-bold mb-1 group-hover:text-purple-600 line-clamp-1 min-h-[1.75rem]">{title}</h3>
       <p class="text-sm text-gray-500 mb-2">By {author}</p>
       
-      <div class="flex flex-wrap gap-2 mb-3">
+      <div class="flex flex-wrap gap-2 mb-3 min-h-[1.75rem]">
         {technologies.map((tech) => (
           <span class="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-full">{tech}</span>
         ))}
       </div>
       
-      <p class="text-gray-600 line-clamp-2">{description}</p>
+      <p class="text-gray-600 line-clamp-2 flex-grow min-h-[3rem]">{description}</p>
       
       <div class="mt-4">
         <span class="inline-flex items-center text-purple-600 font-bold">

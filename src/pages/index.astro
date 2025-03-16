@@ -9,33 +9,89 @@ import ToolCard from '@/components/ToolCard.astro'
 import ProjectCard from '@/components/ProjectCard.astro'
 import { Button } from '@/components/ui/button'
 
-// Remove this collection call since we're removing the blog section
-// const allPosts = await getCollection('posts')
-// const sortedPosts = allPosts.sort(
-//   (a, b) =>
-//     new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
-// )
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion'
+import FAQ from '@/components/FAQ'
+
+// Get testimonials - in a real implementation, this would come from a collection
+const testimonials = [
+  {
+    name: "Alex Johnson",
+    role: "Indie Developer",
+    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+    text: "The Vibecode Hub has completely transformed how I approach projects. With AI tools, I can build in days what used to take weeks."
+  },
+  {
+    name: "Maria Garcia",
+    role: "UX Designer",
+    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704e",
+    text: "As a designer with limited coding experience, I can now prototype my ideas independently. The community has been incredibly supportive."
+  },
+  {
+    name: "Jamal Wilson",
+    role: "Startup Founder",
+    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704f",
+    text: "We launched our MVP in record time using the techniques shared on this platform. The knowledge hub is an invaluable resource."
+  },
+  {
+    name: "Sarah Chen",
+    role: "CS Student",
+    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704g",
+    text: "The tutorials and community forum have helped me understand AI-assisted programming concepts that weren't covered in my courses."
+  },
+  {
+    name: "David Kim",
+    role: "Full-Stack Developer",
+    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704h",
+    text: "I was skeptical about AI tools at first, but the comparison guides helped me find the right tools for my workflow."
+  }
+];
+
+// FAQ questions
+const faqItems = [
+  {
+    question: "What is Vibe Coding?",
+    answer: "Vibe Coding is an emerging practice that leverages AI-assisted programming tools to rapidly prototype and develop software. It combines human creativity with AI capabilities to make coding more accessible and efficient."
+  },
+  {
+    question: "Do I need to be an experienced programmer?",
+    answer: "Not at all! Our community welcomes everyone from complete beginners to seasoned developers. AI tools are particularly helpful for those with limited coding experience."
+  },
+  {
+    question: "Which AI coding tools are recommended for beginners?",
+    answer: "We recommend starting with user-friendly tools like GitHub Copilot, Cursor, or Replit's Ghostwriter. Our Tools Directory has detailed comparisons to help you choose the right one."
+  },
+  {
+    question: "How can I contribute to the community?",
+    answer: "You can share your projects in the showcase, write tutorials, participate in forum discussions, or even host a webinar. Check our 'Join Community' page for more ways to get involved."
+  }
+];
 ---
 
 <Base meta={{ title: config.title }}>
-  <!-- Hero Section -->
-  <section class="w-full py-12 md:py-24 lg:py-32 mb-12 
-    bg-gradient-to-b from-[var(--hero-background-color-01)] to-[var(--hero-background-color-02)]">
-    <div class="container px-4 md:px-6">
+  <!-- Hero Section - Kept similar but with added grid background -->
+  <section class="w-full py-12 md:py-24 lg:py-32 mb-0 
+  bg-gradient-to-b from-[var(--hero-background-color-01)] to-[var(--hero-background-color-02)]
+  grid-background">
+  <div class="container px-4 md:px-6">
       <div class="flex flex-col items-center space-y-4 text-center">
         <div class="space-y-2">
           <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
-            Vibecoders Community Hub
+            Vibecode Community Hub
           </h1>
           <p class="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
             Empowering developers to create with AI-assisted programming tools
           </p>
         </div>
-        <div class="space-x-4">
-          <a href="/tools" class="bg-bg2 text-foreground hover:bg-muted px-4 py-2 font-bold">
+        <div class="space-x-4 pt-4">
+          <a href="/tools" class="bg-bg2 text-foreground hover:bg-muted px-4 py-2 font-bold border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
             Explore Tools <span class="ml-2">→</span>
           </a>
-          <a href="/join" class="border-background text-background hover:bg-bg2/10 border px-4 py-2 font-bold">
+          <a href="/join" class="border-background text-background hover:bg-bg2/10 border-2 border-border px-4 py-2 font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
             Join Community
           </a>
         </div>
@@ -43,7 +99,7 @@ import { Button } from '@/components/ui/button'
     </div>
   </section>
 
-  <!-- Features Section -->
+  <!-- Features Section with Marquee -->
   <section class="w-full py-12 md:py-24 lg:py-32 bg-muted">
     <div class="container px-4 md:px-6">
       <div class="flex flex-col items-center justify-center space-y-4 text-center">
@@ -56,15 +112,15 @@ import { Button } from '@/components/ui/button'
       </div>
       <div class="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 mt-8">
         <!-- Feature Cards -->
-        <div class="bg-bg2 p-6 border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        <div class="bg-bg2 p-6 border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col h-full">
           <div class="flex flex-row items-center gap-4 mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-primary"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-primary flex-shrink-0"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/></svg>
             <div>
-              <h3 class="text-xl font-bold">News Feed</h3>
+              <h3 class="text-xl font-bold line-clamp-1">News Feed</h3>
               <p class="text-muted-foreground">Stay updated on AI development tools</p>
             </div>
           </div>
-          <p class="text-foreground">Get the latest updates on AI tools, industry news, and influencer insights.</p>
+          <p class="text-foreground flex-grow min-h-[3rem]">Get the latest updates on AI tools, industry news, and influencer insights.</p>
           <div class="mt-4">
             <a href="/news" class="inline-flex items-center text-primary font-bold">
               Browse News <span class="ml-2">→</span>
@@ -72,15 +128,15 @@ import { Button } from '@/components/ui/button'
           </div>
         </div>
         
-        <div class="bg-bg2 p-6 border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        <div class="bg-bg2 p-6 border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col h-full">
           <div class="flex flex-row items-center gap-4 mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-primary"><path d="m5.5 8.5 4 4-4 4"/><path d="m13.5 8.5 4 4-4 4"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-primary flex-shrink-0"><path d="m5.5 8.5 4 4-4 4"/><path d="m13.5 8.5 4 4-4 4"/></svg>
             <div>
-              <h3 class="text-xl font-bold">Tools Directory</h3>
+              <h3 class="text-xl font-bold line-clamp-1">Tools Directory</h3>
               <p class="text-muted-foreground">Discover and compare AI coding tools</p>
             </div>
           </div>
-          <p class="text-foreground">Explore categorized listings, community reviews, and detailed comparisons.</p>
+          <p class="text-foreground flex-grow min-h-[3rem]">Explore categorized listings, community reviews, and detailed comparisons.</p>
           <div class="mt-4">
             <a href="/tools" class="inline-flex items-center text-primary font-bold">
               Explore Tools <span class="ml-2">→</span>
@@ -88,15 +144,15 @@ import { Button } from '@/components/ui/button'
           </div>
         </div>
         
-        <div class="bg-bg2 p-6 border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        <div class="bg-bg2 p-6 border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col h-full">
           <div class="flex flex-row items-center gap-4 mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-primary"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-primary flex-shrink-0"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
             <div>
-              <h3 class="text-xl font-bold">Knowledge Hub</h3>
+              <h3 class="text-xl font-bold line-clamp-1">Knowledge Hub</h3>
               <p class="text-muted-foreground">Learn AI-assisted development</p>
             </div>
           </div>
-          <p class="text-foreground">Access guides, tutorials, and resources for all skill levels.</p>
+          <p class="text-foreground flex-grow min-h-[3rem]">Access guides, tutorials, and resources for all skill levels.</p>
           <div class="mt-4">
             <a href="/learn" class="inline-flex items-center text-primary font-bold">
               Start Learning <span class="ml-2">→</span>
@@ -104,15 +160,15 @@ import { Button } from '@/components/ui/button'
           </div>
         </div>
         
-        <div class="bg-bg2 p-6 border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        <div class="bg-bg2 p-6 border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col h-full">
           <div class="flex flex-row items-center gap-4 mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-primary"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-primary flex-shrink-0"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
             <div>
-              <h3 class="text-xl font-bold">Projects Showcase</h3>
+              <h3 class="text-xl font-bold line-clamp-1">Projects Showcase</h3>
               <p class="text-muted-foreground">Discover community creations</p>
             </div>
           </div>
-          <p class="text-foreground">Browse projects built with AI assistance and share your own work.</p>
+          <p class="text-foreground flex-grow min-h-[3rem]">Browse projects built with AI assistance and share your own work.</p>
           <div class="mt-4">
             <a href="/projects" class="inline-flex items-center text-primary font-bold">
               View Projects <span class="ml-2">→</span>
@@ -120,15 +176,15 @@ import { Button } from '@/components/ui/button'
           </div>
         </div>
         
-        <div class="bg-bg2 p-6 border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        <div class="bg-bg2 p-6 border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col h-full">
           <div class="flex flex-row items-center gap-4 mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-primary"><path d="M21 15a2 2 0 0 1 0 4H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-primary flex-shrink-0"><path d="M21 15a2 2 0 0 1 0 4H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8Z"/></svg>
             <div>
-              <h3 class="text-xl font-bold">Community Forum</h3>
-              <p class="text-muted-foreground">Connect with fellow vibecoders</p>
+              <h3 class="text-xl font-bold line-clamp-1">Community Forum</h3>
+              <p class="text-muted-foreground">Connect with fellow vibecode</p>
             </div>
           </div>
-          <p class="text-foreground">Discuss techniques, share prompts, and get help from the community.</p>
+          <p class="text-foreground flex-grow min-h-[3rem]">Discuss techniques, share prompts, and get help from the community.</p>
           <div class="mt-4">
             <a href="/forum" class="inline-flex items-center text-primary font-bold">
               Join Discussion <span class="ml-2">→</span>
@@ -136,15 +192,15 @@ import { Button } from '@/components/ui/button'
           </div>
         </div>
         
-        <div class="bg-bg2 p-6 border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        <div class="bg-bg2 p-6 border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col h-full">
           <div class="flex flex-row items-center gap-4 mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-primary"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-primary flex-shrink-0"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
             <div>
-              <h3 class="text-xl font-bold">Events & Webinars</h3>
+              <h3 class="text-xl font-bold line-clamp-1">Events & Webinars</h3>
               <p class="text-muted-foreground">Learn through live sessions</p>
             </div>
           </div>
-          <p class="text-foreground">Participate in workshops, hackathons, and live coding sessions.</p>
+          <p class="text-foreground flex-grow min-h-[3rem]">Participate in workshops, hackathons, and live coding sessions.</p>
           <div class="mt-4">
             <a href="/events" class="inline-flex items-center text-primary font-bold">
               View Calendar <span class="ml-2">→</span>
@@ -155,6 +211,193 @@ import { Button } from '@/components/ui/button'
     </div>
   </section>
 
-  <!-- Removing the Blog Posts Section -->
-  <!-- The blog posts section used to be here -->
+  <!-- Latest News Section -->
+  <section class="w-full py-12">
+    <div class="container px-4 md:px-6">
+      <div class="flex flex-col items-start gap-4">
+        <div class="flex items-center justify-between w-full">
+          <h2 class="text-2xl font-bold tracking-tighter sm:text-3xl">Latest News</h2>
+          <a href="/news" class="inline-flex items-center text-primary font-bold">
+            View All <span class="ml-2">→</span>
+          </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+          <NewsCard
+            title="OpenAI Releases New Code Interpreter Features"
+            category="Product Updates"
+            date="March 12, 2025"
+            excerpt="OpenAI has expanded its Code Interpreter capabilities with new language support and debugging tools."
+            imageUrl="/placeholder.svg?height=200&width=400"
+            href="/news/openai-code-interpreter"
+          />
+          <NewsCard
+            title="Interview with Andrej Karpathy on AI Coding"
+            category="Influencer Insights"
+            date="March 10, 2025"
+            excerpt="Former OpenAI researcher shares thoughts on the future of AI-assisted programming."
+            imageUrl="/placeholder.svg?height=200&width=400"
+            href="/news/karpathy-interview"
+          />
+          <NewsCard
+            title="Weekly AI Tools Roundup"
+            category="Curated Summary"
+            date="March 8, 2025"
+            excerpt="Our weekly digest of the most important updates in the AI coding tools landscape."
+            imageUrl="/placeholder.svg?height=200&width=400"
+            href="/news/weekly-roundup"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Tools Section -->
+  <section class="w-full py-12">
+    <div class="container px-4 md:px-6">
+      <div class="flex flex-col items-start gap-4">
+        <div class="flex items-center justify-between w-full">
+          <h2 class="text-2xl font-bold tracking-tighter sm:text-3xl">Featured Tools</h2>
+          <a href="/tools" class="inline-flex items-center text-primary font-bold">
+            View All <span class="ml-2">→</span>
+          </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+          <ToolCard
+            name="GitHub Copilot"
+            category="IDE Integration"
+            rating={4.8}
+            description="AI pair programmer that helps you write code faster with context-aware suggestions."
+            imageUrl="/placeholder.svg?height=100&width=100"
+            href="/tools/github-copilot"
+          />
+          <ToolCard
+            name="Cursor"
+            category="AI-Enhanced Editor"
+            rating={4.6}
+            description="Code editor with built-in AI capabilities for code generation and editing."
+            imageUrl="/placeholder.svg?height=100&width=100"
+            href="/tools/cursor"
+          />
+          <ToolCard
+            name="Replit Ghostwriter"
+            category="Code Generation"
+            rating={4.5}
+            description="AI coding assistant integrated into Replit's online IDE."
+            imageUrl="/placeholder.svg?height=100&width=100"
+            href="/tools/replit-ghostwriter"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects Section -->
+  <section class="w-full py-12">
+    <div class="container px-4 md:px-6">
+      <div class="flex flex-col items-start gap-4">
+        <div class="flex items-center justify-between w-full">
+          <h2 class="text-2xl font-bold tracking-tighter sm:text-3xl">Community Projects</h2>
+          <a href="/projects" class="inline-flex items-center text-primary font-bold">
+            View All <span class="ml-2">→</span>
+          </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+          <ProjectCard
+            title="AI Recipe Generator"
+            author="Sarah Chen"
+            description="Web app that generates recipes based on available ingredients using GPT-4."
+            imageUrl="/placeholder.svg?height=200&width=400"
+            technologies={["GPT-4", "Next.js", "Vercel AI SDK"]}
+            href="/projects/ai-recipe-generator"
+          />
+          <ProjectCard
+            title="Code Explainer Extension"
+            author="Miguel Rodriguez"
+            description="VS Code extension that explains complex code blocks in plain English."
+            imageUrl="/placeholder.svg?height=200&width=400"
+            technologies={["Claude API", "TypeScript", "VS Code API"]}
+            href="/projects/code-explainer"
+          />
+          <ProjectCard
+            title="Prompt Engineering Guide"
+            author="Aisha Johnson"
+            description="Interactive guide to writing effective prompts for code generation."
+            imageUrl="/placeholder.svg?height=200&width=400"
+            technologies={["React", "OpenAI API", "Tailwind CSS"]}
+            href="/projects/prompt-engineering-guide"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section with Neobrutalism Accordion -->
+  <section class="w-full py-12 md:py-24 lg:py-32 bg-muted">
+    <div class="container px-4 md:px-6">
+      <div class="flex flex-col items-center justify-center space-y-4 text-center">
+        <div class="space-y-2">
+          <h2 class="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground">Frequently Asked Questions</h2>
+          <p class="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+            Find answers to common questions about Vibe Coding and our community
+          </p>
+        </div>
+      </div>
+      
+      <div class="mx-auto w-full max-w-3xl mt-12">
+        <FAQ items={faqItems} client:load />
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section (instead of Pricing) -->
+  <section class="w-full py-12 md:py-24 lg:py-32 
+  bg-gradient-to-b from-[var(--hero-background-color-01)] to-[var(--hero-background-color-02)]
+  grid-background">
+   <div class="container px-4 md:px-6">
+      <div class="flex flex-col items-center justify-center space-y-4 text-center">
+        <div class="space-y-2">
+          <h2 class="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground">Join Our Growing Community</h2>
+          <p class="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-xl/relaxed xl:text-xl/relaxed">
+            Connect with other Vibecode, share your projects, and learn together
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 w-full max-w-4xl">
+          <div class="bg-bg2 p-6 rounded-md border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            <h3 class="text-xl font-bold mb-2">Community Forum</h3>
+            <p class="mb-4">Join discussions, share ideas, and get help from fellow Vibecode.</p>
+            <a href="/forum" class="inline-flex items-center bg-foreground text-background px-4 py-2 font-bold rounded-md">
+              Join Forum
+            </a>
+          </div>
+          
+          <div class="bg-bg2 p-6 rounded-md border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            <h3 class="text-xl font-bold mb-2">Discord Server</h3>
+            <p class="mb-4">Chat in real-time, attend events, and collaborate with our community.</p>
+            <a href="/discord" class="inline-flex items-center bg-foreground text-background px-4 py-2 font-bold rounded-md">
+              Join Discord
+            </a>
+          </div>
+          
+          <div class="bg-bg2 p-6 rounded-md border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            <h3 class="text-xl font-bold mb-2">Newsletter</h3>
+            <p class="mb-4">Get weekly updates about AI tools, tutorials, and community projects.</p>
+            <a href="/newsletter" class="inline-flex items-center bg-foreground text-background px-4 py-2 font-bold rounded-md">
+              Subscribe
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </Base>
+
+<style>
+  /* Add marquee animations */
+
+  .grid-background {
+    background-image: linear-gradient(to right, rgba(128, 128, 128, 0.07) 1px, transparent 1px),
+                     linear-gradient(to bottom, rgba(128, 128, 128, 0.07) 1px, transparent 1px);
+    background-size: 70px 70px;
+  }
+</style>

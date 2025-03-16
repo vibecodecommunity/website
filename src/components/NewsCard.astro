@@ -11,8 +11,8 @@ interface Props {
 const { title, category, date, excerpt, imageUrl = '/placeholder.svg', href } = Astro.props;
 ---
 
-<a href={href} class="block group">
-  <div class="bg-white rounded-lg border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+<a href={href} class="block group h-full">
+  <div class="bg-bg2 rounded-lg border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] flex flex-col h-full">
     <div class="aspect-video w-full overflow-hidden bg-gray-100">
       <img 
         src={imageUrl} 
@@ -21,14 +21,14 @@ const { title, category, date, excerpt, imageUrl = '/placeholder.svg', href } = 
       />
     </div>
     
-    <div class="p-4">
+    <div class="p-4 flex flex-col flex-grow">
       <div class="flex items-center justify-between mb-2">
         <span class="text-sm font-medium text-purple-600 bg-purple-100 px-2 py-1 rounded">{category}</span>
         <span class="text-sm text-gray-500">{date}</span>
       </div>
       
-      <h3 class="text-xl font-bold mb-2 group-hover:text-purple-600">{title}</h3>
-      <p class="text-gray-600 line-clamp-2">{excerpt}</p>
+      <h3 class="text-xl font-bold mb-2 group-hover:text-purple-600 line-clamp-2 min-h-[3.5rem]">{title}</h3>
+      <p class="text-gray-600 line-clamp-3 flex-grow min-h-[4.5rem]">{excerpt}</p>
     </div>
   </div>
 </a> 
