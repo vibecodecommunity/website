@@ -73,12 +73,13 @@ const { items } = Astro.props
         } else if (isTool) {
           // Use type assertion for tool items
           const typedItem = item as (typeof item & { data: { name: string, description: string } })
+          // Tools might not have a date
           return (
             <PostPreview
               url={'/tools/' + item.slug}
               title={typedItem.data.name}
               description={typedItem.data.description}
-              pubDate={new Date()} // Tools might not have a date
+              pubDate={new Date()}
             />
           )
         }
