@@ -1,33 +1,39 @@
 ---
-const { url, title, description, pubDate } = Astro.props
+interface Props {
+  url: string;
+  title: string;
+  description: string;
+  pubDate: Date;
+}
+
+const { url, title, description, pubDate } = Astro.props;
+
+// Format the date
+const formattedDate = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric'
+}).format(pubDate);
 ---
 
-<a
-  href={url}
-  class="rounded-base border-2 border-border bg-main p-4 text-foreground shadow-light transition-all last:mb-0 hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:shadow-dark dark:hover:shadow-none"
-
-  <h2 class="text-xl font-heading w500:text-lg">
-    {title}
-  </h2>
-  <p class="mb-5 mt-3 w500:text-sm">
-    {description}
-  </p>
-  <div class="flex w-max items-center">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="mr-3 h-4 w-4 w500:h-3 w500:w-3"
-      viewBox="-0.5 0 15 15"
-    >
-      <path
-        class="fill-foreground"
-        fill-rule="evenodd"
-        d="M61,154.006845 C61,153.45078 61.4499488,153 62.0068455,153 L73.9931545,153 C74.5492199,153 75,153.449949 75,154.006845 L75,165.993155 C75,166.54922 74.5500512,167 73.9931545,167 L62.0068455,167 C61.4507801,167 61,166.550051 61,165.993155 L61,154.006845 Z M62,157 L74,157 L74,166 L62,166 L62,157 Z M64,152.5 C64,152.223858 64.214035,152 64.5046844,152 L65.4953156,152 C65.7740451,152 66,152.231934 66,152.5 L66,153 L64,153 L64,152.5 Z M70,152.5 C70,152.223858 70.214035,152 70.5046844,152 L71.4953156,152 C71.7740451,152 72,152.231934 72,152.5 L72,153 L70,153 L70,152.5 Z"
-        transform="translate(-61 -152)"
-      ></path>
-    </svg>
-    <p class="text-sm leading-5 tracking-wide w500:text-xs text-foreground">
-      {pubDate}
-    </p>
+<a href={url} class="block group h-full">
+  <div class="bg-bg2 rounded-lg border-2 border-border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] overflow-hidden transition-all hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] flex flex-col h-full">
+    <div class="p-4 flex flex-col flex-grow">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-sm font-medium bg-bg2 px-2 py-1 rounded">{url.split('/')[1]}</span>
+        <span class="text-sm text-muted-foreground">{formattedDate}</span>
+      </div>
+      
+      <h3 class="text-xl font-bold mb-2 group-hover:text-mainAccent line-clamp-2">{title}</h3>
+      <p class="text-text opacity-80 line-clamp-3 flex-grow">{description}</p>
+      
+      <div class="mt-4 text-mainAccent font-medium flex items-center">
+        Read more
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1 h-4 w-4">
+          <path d="M5 12h14"></path>
+          <path d="m12 5 7 7-7 7"></path>
+        </svg>
+      </div>
+    </div>
   </div>
 </a>
-
