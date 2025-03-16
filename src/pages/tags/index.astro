@@ -3,8 +3,27 @@ import { getCollection } from 'astro:content'
 
 import Base from '@/layouts/Base.astro'
 
-const allPosts = await getCollection('posts')
-const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())]
+// Get all content from each collection
+const newsItems = await getCollection('news')
+const toolsItems = await getCollection('tools')
+const learnItems = await getCollection('learn')
+
+// Combine all items with tags
+const allItems = [
+  ...newsItems,
+  ...toolsItems,
+  ...learnItems
+].filter(item => item.data.tags && item.data.tags.length > 0)
+
+// Extract unique tags with proper trimming
+const tags = [...new Set(
+  allItems.flatMap(item => 
+    (item.data.tags || []).map(tag => tag.trim())
+  )
+)]
+
+// For debugging
+console.log("Available tags:", tags);
 ---
 
 <Base meta={{ title: 'Tags' }}>

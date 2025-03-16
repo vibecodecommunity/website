@@ -7,6 +7,8 @@ featured: true
 imageUrl: "/placeholder.svg"
 pricing: "Free tier available, Pro plan at $20/month"
 website: "https://cursor.sh"
+tags: ["AI", "code editor", "VSCode", "coding", "development"]
+
 pros:
   - "Built specifically for AI-assisted coding"
   - "Powerful chat interface for code generation"

@@ -7,6 +7,7 @@ level: "intermediate"
 duration: "25 min"
 featured: false
 imageUrl: "/images/tutorials/advanced-prompts.jpg"
+tags: ["AI", "prompt engineering", "advanced", "tutorial", "code generation"]
 ---
 
 # Effective Prompt Engineering for Code Generation

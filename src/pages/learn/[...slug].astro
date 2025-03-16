@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content'
-import Layout from '@/layouts/BlogPost.astro'
+import Layout from '@/layouts/Page.astro'
 
 export async function getStaticPaths() {
   const learnEntries = await getCollection('learn')
@@ -22,7 +22,7 @@ const adaptedFrontmatter = {
   updatedDate: entry.data.pubDate,
   heroImage: entry.data.imageUrl,
   category: entry.data.category,
-  tags: [entry.data.level, entry.data.category], // Convert to tags array
+  tags: entry.data.tags, // Convert to tags array
   // Add any other fields that PostInfo.astro might be expecting
 }
 ---

@@ -7,6 +7,8 @@ level: "intermediate"
 duration: "20 min"
 featured: true
 imageUrl: "/images/tutorials/ai-code-review.jpg"
+tags: ["AI", "code review", "refactoring", "GitHub Copilot", "ChatGPT", "CodeGuru", "DeepCode", "SonarQube"]
+
 ---
 
 # Using AI for Code Review and Refactoring

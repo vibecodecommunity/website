@@ -1,9 +1,8 @@
 ---
-const { title, date, frontmatter = {} } = Astro.props
+const { title, date, tags } = Astro.props
 
 // Safe access to potentially missing properties
-const tags = frontmatter && Array.isArray(frontmatter.tags) ? frontmatter.tags : 
-             frontmatter && frontmatter.category ? [frontmatter.category] : [];
+
 ---
 
 <div class="mb-5">
@@ -40,13 +39,3 @@ const tags = frontmatter && Array.isArray(frontmatter.tags) ? frontmatter.tags :
     </div>
   </div>
 </div>
-
-{tags.length > 0 && (
-  <div class="tags">
-    {tags.map((tag: string) => (
-      <span class="tag">{tag}</span>
-    ))}
-  </div>
-)}
-
-

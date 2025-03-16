@@ -7,6 +7,9 @@ featured: true
 imageUrl: "/placeholder.svg"
 pricing: "$10/month or $100/year, free for students"
 website: "https://github.com/features/copilot"
+
+tags: ["AI", "IDE", "coding", "development", "GitHub", "OpenAI"]
+
 pros: 
   - "Seamless IDE integration"
   - "Contextually aware code suggestions"

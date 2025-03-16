@@ -1,46 +1,88 @@
 ---
 import { getCollection } from 'astro:content'
-import type { Post } from '@/content/config'
+import type { ContentItem } from '@/content/config'
 
 import Base from '@/layouts/Base.astro'
 import PostPreview from '@/components/PostPreview.astro'
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection('posts')
-
-  const uniqueTags = [
-    ...new Set(allPosts.map((post: Post) => post.data.tags).flat()),
-  ]
-
-  return uniqueTags.map((tag: string) => {
-    const filteredPosts = allPosts.filter((post: Post) =>
-      post.data.tags.includes(tag)
+  // Get all content from each collection
+  const newsItems = await getCollection('news')
+  const toolsItems = await getCollection('tools')
+  const learnItems = await getCollection('learn')
+  
+  // Combine all items with tags
+  const allItems = [
+    ...newsItems,
+    ...toolsItems,
+    ...learnItems
+  ].filter(item => item.data.tags && item.data.tags.length > 0)
+  
+  // Extract unique tags and ensure they're trimmed
+  const uniqueTags = [...new Set(
+    allItems.flatMap(item => 
+      (item.data.tags || []).map(tag => tag.trim())
     )
+  )]
+
+  // For debugging - you can check the console to see what tags are found
+  console.log("Generated tags:", uniqueTags);
+
+  return uniqueTags.map((tag) => {
+    // Filter items that include this tag (with case-insensitive matching)
+    const filteredItems = allItems.filter(item => 
+      item.data.tags && item.data.tags.some(t => 
+        t.trim().toLowerCase() === tag.toLowerCase()
+      )
+    )
+    
     return {
       params: { tag },
-      props: { posts: filteredPosts },
+      props: { items: filteredItems },
     }
   })
 }
 
 const { tag } = Astro.params
-const { posts }: { posts: Post[] } = Astro.props
+const { items } = Astro.props
 ---
 
-<Base meta={{ title: 'Posts tagged with ' + tag }}>
+<Base meta={{ title: 'Content tagged with ' + tag }}>
   <h2 class="mb-10 text-2xl font-heading tracking-wide w500:text-lg">
-    Posts tagged with <span class="text-text dark:text-darkText">#{tag}</span>
+    Content tagged with <span class="text-text dark:text-darkText">#{tag}</span>
   </h2>
   <div class="w700:grid-cols-1 grid grid-cols-2 gap-5">
     {
-      posts.map((post: Post) => (
-        <PostPreview
-          url={'/' + post.slug}
-          title={post.data.title}
-          description={post.data.description}
-          pubDate={post.data.pubDate}
-        />
-      ))
+      items.map((item) => {
+        // Determine what kind of content this is
+        const isNews = 'title' in item.data && 'pubDate' in item.data && 'category' in item.data 
+        const isLearn = 'title' in item.data && 'level' in item.data
+        const isTool = 'name' in item.data && 'category' in item.data
+        
+        if (isNews || isLearn) {
+          // Use type assertion to tell TypeScript this has title property
+          const typedItem = item as (typeof item & { data: { title: string, description: string, pubDate: Date } })
+          return (
+            <PostPreview
+              url={'/' + item.collection + '/' + item.slug}
+              title={typedItem.data.title}
+              description={typedItem.data.description}
+              pubDate={typedItem.data.pubDate}
+            />
+          )
+        } else if (isTool) {
+          // Use type assertion for tool items
+          const typedItem = item as (typeof item & { data: { name: string, description: string } })
+          return (
+            <PostPreview
+              url={'/tools/' + item.slug}
+              title={typedItem.data.name}
+              description={typedItem.data.description}
+              pubDate={new Date()} // Tools might not have a date
+            />
+          )
+        }
+      })
     }
   </div>
 </Base>

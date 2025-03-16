@@ -13,6 +13,7 @@ const newsCollection = defineCollection({
     category: z.string(),
     featured: z.boolean().optional().default(false),
     imageUrl: z.string().optional(),
+    tags: z.array(z.string()).default([]),
   }),
 });
 
@@ -29,6 +30,7 @@ const toolsCollection = defineCollection({
     website: z.string().url().optional(),
     pros: z.array(z.string()).optional(),
     cons: z.array(z.string()).optional(),
+    tags: z.array(z.string()).default([]),
   }),
 });
 
@@ -43,7 +45,8 @@ const learnCollection = defineCollection({
     duration: z.string().optional(),
     featured: z.boolean().default(false),
     level: z.enum(['beginner', 'intermediate', 'advanced']),
-    imageUrl: z.string().optional()
+    imageUrl: z.string().optional(),
+    tags: z.array(z.string()).default([]),
   })
 });
 
@@ -56,3 +59,6 @@ export const collections = {
 export type News = CollectionEntry<'news'>
 export type Tools = CollectionEntry<'tools'>
 export type Learn = CollectionEntry<'learn'>
+
+// Add a ContentItem type that can represent any content piece
+export type ContentItem = News | Tools | Learn

@@ -7,6 +7,9 @@ featured: true
 imageUrl: "/placeholder.svg"
 pricing: "Included with Replit Pro ($10/month) and Teams plans"
 website: "https://replit.com/ghostwriter"
+
+tags: ["AI", "code editor", "Replit", "coding", "development"]
+
 pros:
   - "Integrated directly into Replit's web IDE"
   - "Contextual code completions and generation"
