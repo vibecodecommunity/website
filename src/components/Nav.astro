@@ -6,59 +6,74 @@ import ThemeSwitcher from '@/components/ThemeSwitcher'
   <div
     class="z-50 mx-auto mt-5 flex h-[70px] w-full max-w-[1200px] items-center justify-between rounded-lg border-2 border-black bg-white px-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:bg-secondaryBlack dark:text-darkText w400:h-[unset] w400:flex-col w400:gap-3 w400:py-3"
   >
-    <a href="/" class="flex items-center gap-2">
-      <div class=" p-2 rounded-md logo-container">
-        <svg class="logo" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
-          <defs>
-            <!-- Enhanced vibrant gradient -->
-            <linearGradient id="friendlyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#8B5CF6" />
-              <stop offset="50%" stop-color="#7C3AED" />
-              <stop offset="100%" stop-color="#6D28D9" />
-            </linearGradient>
-            
-            <!-- Glow filter for the waves -->
-            <filter id="waveGlow" x="-10%" y="-10%" width="120%" height="120%">
-              <feGaussianBlur stdDeviation="0.5" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
-            
-            <!-- Subtle inner light -->
-            <radialGradient id="innerLight" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-              <stop offset="0%" stop-color="#A78BFA" stop-opacity="0.6" />
-              <stop offset="70%" stop-color="#8B5CF6" stop-opacity="0" />
-              <stop offset="100%" stop-color="#6D28D9" stop-opacity="0" />
-            </radialGradient>
-            
-            <!-- Animation for wave pulsing effect (can be used with CSS) -->
-            <animate id="pulse" attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite" />
-            
-            <!-- Animation for color shift (can be used with CSS) -->
-            <animate id="colorShift" attributeName="stop-color" values="#8B5CF6;#9333EA;#8B5CF6" dur="5s" repeatCount="indefinite" />
-          </defs>
-        
-          <!-- Background circle with enhanced gradient -->
-          <circle class="logo-background" cx="24" cy="24" r="20" stroke="#000" stroke-width="2" fill="url(#friendlyGradient)" />
+    <div class="flex w-full items-center justify-between">
+      <a href="/" class="flex items-center gap-2">
+        <div class=" p-2 rounded-md ">
+          <svg class="logo" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <defs>
+              <!-- Enhanced vibrant gradient -->
+              <linearGradient id="friendlyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#8B5CF6" />
+                <stop offset="50%" stop-color="#7C3AED" />
+                <stop offset="100%" stop-color="#6D28D9" />
+              </linearGradient>
+              
+              <!-- Glow filter for the waves -->
+              <filter id="waveGlow" x="-10%" y="-10%" width="120%" height="120%">
+                <feGaussianBlur stdDeviation="0.5" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+              
+              <!-- Subtle inner light -->
+              <radialGradient id="innerLight" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                <stop offset="0%" stop-color="#A78BFA" stop-opacity="0.6" />
+                <stop offset="70%" stop-color="#8B5CF6" stop-opacity="0" />
+                <stop offset="100%" stop-color="#6D28D9" stop-opacity="0" />
+              </radialGradient>
+              
+              <!-- Animation for wave pulsing effect (can be used with CSS) -->
+              <animate id="pulse" attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite" />
+              
+              <!-- Animation for color shift (can be used with CSS) -->
+              <animate id="colorShift" attributeName="stop-color" values="#8B5CF6;#9333EA;#8B5CF6" dur="5s" repeatCount="indefinite" />
+            </defs>
           
-          <!-- Subtle inner glow effect -->
-          <circle cx="24" cy="24" r="15" fill="url(#innerLight)" />
-          
-          <!-- Wave patterns with enhanced styling -->
-          <g filter="url(#waveGlow)">
-            <!-- First wave -->
-            <path stroke="#ffffff" stroke-width="2" opacity="0.9" d="m42.2 27.14-.223-.035-.2-.09-.2-.126-.208-.164-.2-.197-.2-.234-.2-.27-.208-.303-.2-.338-.2-.367-.2-.396-.208-.418-.2-.445-.2-.457-.2-.47-.201-.479-.207-.48-.2-.476-.2-.463-.201-.45-.207-.426-.2-.396-.2-.36-.2-.315-.208-.27-.2-.216-.2-.158-.2-.09-.208-.026-.2.048-.2.123-.2.2-.208.28-.2.353-.2.431-.2.509-.208.58-.2.65-.2.71-.2.77-.201.82-.207.863-.2.895-.2.923-.201.937-.207.943-.2.933-.2.917-.2.889-.208.85-.2.794-.2.737-.2.66-.208.58-.2.489-.2.389-.2.28-.208.17-.2.052-.2-.068-.2-.193-.208-.312-.2-.438-.2-.556-.2-.673-.201-.782-.207-.885-.2-.982-.2-1.065-.201-1.142-.207-1.2-.2-1.256-.2-1.287-.2-1.31-.208-1.316-.2-1.31-.2-1.288-.2-1.248-.208-1.198-.2-1.13-.2-1.052-.2-.959-.208-.856-.2-.743-.2-.621-.2-.49-.208-.354-.2-.215-.2-.071-.2.07-.201.216-.207.354-.2.49-.2.62-.201.744" />
+            <!-- Background circle with enhanced gradient -->
+            <circle class="logo-background" cx="24" cy="24" r="20" stroke="#000" stroke-width="2" fill="url(#friendlyGradient)" />
             
-            <!-- Second wave -->
-            <path stroke="#ffffff" stroke-width="2" opacity="0.9" d="m23 13.494-.207.856-.2.96-.2 1.052-.2 1.13-.208 1.197-.2 1.248-.2 1.288-.2 1.31-.208 1.316-.2 1.31-.2 1.287-.2 1.255-.208 1.2-.2 1.143-.2 1.065-.2.982-.208.885-.2.782-.2.673-.2.556-.201.438-.207.312-.2.193-.2.068-.201-.051-.207-.171-.2-.28-.2-.39-.201-.489-.207-.579-.2-.66-.2-.737-.2-.795-.208-.85-.2-.888-.2-.917-.2-.933-.208-.943-.2-.937-.2-.923-.2-.895-.208-.863-.2-.82-.2-.77-.2-.71-.201-.65-.207-.58-.2-.509-.2-.43-.201-.355-.207-.28-.2-.2-.2-.122-.201-.048-.207.026-.2.09-.2.158-.2.215-.208.27-.2.316-.2.36-.2.396-.208.425-.2.45-.2.464-.2.477-.208.48-.2.479-.2.47-.2.457-.201.444-.207.418-.2.396-.2.367-.201.338-.207.302-.2.27-.2.236-.201.196-.207.164-.2.125-.2.09-.641.126" />
-          </g>
-          
-        </svg>
-        
-      </div>
-      <h2 class="text-2xl font-bold">Vibecode</h2>
-    </a>
+            <!-- Subtle inner glow effect -->
+            <circle cx="24" cy="24" r="15" fill="url(#innerLight)" />
+            
+            <!-- Wave patterns with enhanced styling -->
+            <g filter="url(#waveGlow)">
+              <!-- First wave -->
+              <path stroke="#ffffff" stroke-width="2" opacity="0.9" d="m42.2 27.14-.223-.035-.2-.09-.2-.126-.208-.164-.2-.197-.2-.234-.2-.27-.208-.303-.2-.338-.2-.367-.2-.396-.208-.418-.2-.445-.2-.457-.2-.47-.201-.479-.207-.48-.2-.476-.2-.463-.201-.45-.207-.426-.2-.396-.2-.36-.2-.315-.208-.27-.2-.216-.2-.158-.2-.09-.208-.026-.2.048-.2.123-.2.2-.208.28-.2.353-.2.431-.2.509-.208.58-.2.65-.2.71-.2.77-.201.82-.207.863-.2.895-.2.923-.201.937-.207.943-.2.933-.2.917-.2.889-.208.85-.2.794-.2.737-.2.66-.208.58-.2.489-.2.389-.2.28-.208.17-.2.052-.2-.068-.2-.193-.208-.312-.2-.438-.2-.556-.2-.673-.201-.782-.207-.885-.2-.982-.2-1.065-.201-1.142-.207-1.2-.2-1.256-.2-1.287-.2-1.31-.208-1.316-.2-1.31-.2-1.288-.2-1.248-.208-1.198-.2-1.13-.2-1.052-.2-.959-.208-.856-.2-.743-.2-.621-.2-.49-.208-.354-.2-.215-.2-.071-.2.07-.201.216-.207.354-.2.49-.2.62-.201.744" />
+              
+              <!-- Second wave -->
+              <path stroke="#ffffff" stroke-width="2" opacity="0.9" d="m23 13.494-.207.856-.2.96-.2 1.052-.2 1.13-.208 1.197-.2 1.248-.2 1.288-.2 1.31-.208 1.316-.2 1.31-.2 1.287-.2 1.255-.208 1.2-.2 1.143-.2 1.065-.2.982-.208.885-.2.782-.2.673-.2.556-.201.438-.207.312-.2.193-.2.068-.201-.051-.207-.171-.2-.28-.2-.39-.201-.489-.207-.579-.2-.66-.2-.737-.2-.795-.208-.85-.2-.888-.2-.917-.2-.933-.208-.943-.2-.937-.2-.923-.2-.895-.208-.863-.2-.82-.2-.77-.2-.71-.201-.65-.207-.58-.2-.509-.2-.43-.201-.355-.207-.28-.2-.2-.2-.122-.201-.048-.207.026-.2.09-.2.158-.2.215-.208.27-.2.316-.2.36-.2.396-.208.425-.2.45-.2.464-.2.477-.208.48-.2.479-.2.47-.2.457-.201.444-.207.418-.2.396-.2.367-.201.338-.207.302-.2.27-.2.236-.201.196-.207.164-.2.125-.2.09-.641.126" />
+            </g>
+            
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold">Vibecode</h2>
+      </a>
 
-    <div class="flex items-center text-lg w500:text-base w400:text-sm">
+      <!-- Mobile menu toggle button -->
+      <button id="mobile-menu-toggle" class="hidden md:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hamburger-icon">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="close-icon hidden">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Desktop navigation -->
+    <div class="hidden md:flex items-center text-lg w500:text-base">
       <a class="mr-6 hover:text-purple-600 font-medium" href="/tools">Tools</a>
       <a class="mr-6 hover:text-purple-600 font-medium" href="/news">News</a>
       <a class="mr-6 hover:text-purple-600 font-medium" href="/learn">Learn</a>
@@ -67,29 +82,56 @@ import ThemeSwitcher from '@/components/ThemeSwitcher'
 
       <ThemeSwitcher client:load />
     </div>
+
+    <!-- Mobile navigation panel -->
+    <div id="mobile-menu" class="hidden flex-col w-full md:hidden">
+      <a class="py-3 border-t border-gray-200 dark:border-gray-700 hover:text-purple-600 font-medium" href="/tools">Tools</a>
+      <a class="py-3 border-t border-gray-200 dark:border-gray-700 hover:text-purple-600 font-medium" href="/news">News</a>
+      <a class="py-3 border-t border-gray-200 dark:border-gray-700 hover:text-purple-600 font-medium" href="/learn">Learn</a>
+      <a class="py-3 border-t border-gray-200 dark:border-gray-700 hover:text-purple-600 font-medium" href="/forum">Forum</a>
+      <a class="py-3 border-t border-gray-200 dark:border-gray-700 hover:text-purple-600 font-medium" href="/about">About</a>
+      
+      <div class="py-3 border-t border-gray-200 dark:border-gray-700">
+        <ThemeSwitcher client:load />
+      </div>
+    </div>
   </div>
 </nav>
 
+<script>
+  // Mobile menu toggle functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburgerIcon = document.querySelector('.hamburger-icon');
+    const closeIcon = document.querySelector('.close-icon');
+    
+    if (mobileMenuToggle && mobileMenu && hamburgerIcon && closeIcon) {
+      mobileMenuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('flex');
+        hamburgerIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+      });
+    }
+  });
+</script>
 
 <style>
-  .logo-background {
-    animation: pulse 4s infinite ease-in-out;
+  /* ... existing styles ... */
+  
+  /* Mobile menu styles */
+  #mobile-menu {
+    transition: all 0.3s ease-in-out;
   }
   
-  @keyframes pulse {
-    0% { opacity: 0.9; }
-    50% { opacity: 1; }
-    100% { opacity: 0.9; }
+  #mobile-menu-toggle {
+    display: none;
   }
   
-  /* Animation 3: Gradient Shift */
-  .logo-container {
-    animation: gradientShift 8s infinite linear;
-  }
-  
-  @keyframes gradientShift {
-    0% { filter: hue-rotate(0deg); }
-    50% { filter: hue-rotate(10deg); }
-    100% { filter: hue-rotate(0deg); }
+  @media (max-width: 768px) {
+    #mobile-menu-toggle {
+      display: block;
+    }
   }
 </style>
